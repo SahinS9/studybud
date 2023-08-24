@@ -1,0 +1,56 @@
+env in the project directory
+
+startapp for new application
+
+templates not in each app but in general projects directory:
+because of that edit TEMPLATES in the settings and give the base to the DIRS[] as the BASE_DIR / 'templates'
+
+render templates
+
+template inheritence
+
+django template engine
+{{}} - dynamic data integration
+
+TAGS
+{% csrf_token %}
+...
+
+url name usage
+ {% url 'room' room.id %} - room.id is for room/<str:pk>
+
+SQL lite db usage
+migration
+python manage.py migrate 
+
+python manage.py makemigrations - save the model, class that has written
+python manage.py migrate - create the table, apply last migration to the db
+
+### in order to see new tables in the admin panel
+admin.py should be updated in order to validate classes
+
+"
+from .models import Room
+
+admin.site.register(Room)
+"
+
+add MODELS to the views file too
+
+in order to work with DB in views
+                        attr.method()
+queryset = ModelName.objects.all()
+.get()
+.filter()
+.exclude()
+
+
+#### create admin level user to admin panel
+python manage.py createsuperuser
+
+working on admin level means doing crud operation in admine panel
+
+
+usage of built in Classes of django
+from django.contrib.auth.models import User
+use User class
