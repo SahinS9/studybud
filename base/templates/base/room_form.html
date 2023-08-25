@@ -1,0 +1,18 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+<div>
+    <form method = 'POST' action = "" >
+        {% csrf_token %} 
+        {{form.as_p}}
+        <!-- .as_p makes it as paragraph tagged and they they are in new line -->
+    </form>
+
+    <input type = 'submit' value = "Submit"/>
+
+</div>
+
+
+
+{% endblock %}
