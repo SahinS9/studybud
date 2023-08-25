@@ -17,6 +17,11 @@ class Room(models.Model):
     updated = models.DateTimeField(auto_now = True) #takes every save
     created = models.DateTimeField(auto_now_add = True) #takes when it s created
 
+
+    class Meta:
+        ordering = ['-updated','-created']
+        # 'updated': Ascending order  '-updated': Descending Order
+
     def __str__(self):
         return self.name #in order to see name from db
 
