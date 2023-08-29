@@ -1,4 +1,8 @@
 from django.shortcuts import render, redirect
+
+#it is for search - So person name, room name, topic name can be searched
+from django.db.models import Q
+
 from django.http import HttpResponse
 from .models import Room, Topic
 from .forms import RoomForm
@@ -17,16 +21,23 @@ def home(request):
 
         # with the foreign key connection we go to the topic model and filter name
         # if icontains has filter value it ll use, not - then no
-    rooms = Room.objects.filter(topic__name__icontains = q)
+        # Q is for the searching by 3 different values 
+    rooms = Room.objects.filter(
+        Q(topic__name__icontains = q) |
+        Q(name__icontains = q) |
+        Q(description__icontains = q)
+                                )
 
     # rooms = Room.objects.all()
     
     #need to change topics for most viewed or smth
     topics= Topic.objects.all()
 
+    #this works faster than python len
+    room_count = rooms.count()
 
 
-    context = {'rooms':rooms, 'topics':topics}
+    context = {'rooms':rooms, 'topics':topics, "room_count": room_count}
     return render(request, 'base/home.html', context)
 
 def room (request,pk):

@@ -20,7 +20,7 @@
 
         <div>
             <!-- in order to get all topics when open a home page -->
-            <a href = "{% url 'home' %}" >All</a> 
+            <a href = "{% url 'home' %}">All</a> 
         </div>
        
     
@@ -34,6 +34,7 @@
         {% endfor %}
     </div>
 <div>
+    <h5>{{room_count}} rooms available</h5>
     <a href = '{% url "create-room" %}'>Create Room</a>
 
     <div>
