@@ -5,6 +5,11 @@ from django.db.models import Q
 
 from django.http import HttpResponse
 from .models import Room, Topic
+
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+
 from .forms import RoomForm
 
 # rooms = [
@@ -12,6 +17,30 @@ from .forms import RoomForm
 #     {'id':2,'name':'Front end lesson'},
 #     {'id':3, 'name':'Backend Lesson'}
 # ]
+
+#have function login - it s method so itll create problem
+def LoginPage(request):
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            user = User.objects.get(username = username)
+        except:
+            messages.error(request, 'User does not exist')
+
+        user = authenticate(request, username = username, password= password)
+
+        if user is not None:
+            #adding session to db
+            login(request, user)
+            return redirect ('home')
+        else:
+            messages.error(request,'Username or password does not exist')
+    context = {}
+    return render(request, 'base/login_register.html', context)
+
+
 
 
 
@@ -84,3 +113,5 @@ def deleteRoom(request,pk):
         return redirect('home')
 
     return render(request, 'base/delete.html', {'obj': room})
+
+

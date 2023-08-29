@@ -54,3 +54,16 @@ working on admin level means doing crud operation in admine panel
 usage of built in Classes of django
 from django.contrib.auth.models import User
 use User class
+
+
+
+
+### USER AUTHENTICATION
+# User Login
+Django has session based user authentication 
+when we log in data goes to the backend and saved in the SESSIONS table (installed apps - session)
+
+in browser
+inspect > application > Cookies
+
+We built session authentication by ourselves
