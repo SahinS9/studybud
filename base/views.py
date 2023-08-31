@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect
 #it is for search - So person name, room name, topic name can be searched
 from django.db.models import Q
 
+#for page restrict to notusers
+from django.contrib.auth.decorators import login_required
+
 from django.http import HttpResponse
 from .models import Room, Topic
 
@@ -77,6 +80,7 @@ def room (request,pk):
     context = {'room':room}
     return render(request, 'base/room.html', context)
 
+@login_required(login_url = "login")
 def create_room (request):
     form = RoomForm()
     
@@ -90,9 +94,15 @@ def create_room (request):
     context = {'form':form}
     return render(request, 'base/room_form.html', context)
 
-
+@login_required(login_url = "login")
 def updateRoom(request, pk):
     room = Room.objects.get(id=pk)
+
+
+    #login restriction is also require this action in case of someone knows the url eventhough not logged in
+    if request.user != room.host:
+        return HttpResponse ('You are not allowed here!!')
+
 
     #prefilled with the room value that we bring with pk
     form = RoomForm(instance=room)
@@ -107,9 +117,13 @@ def updateRoom(request, pk):
     context = {'form':form}
     return render(request, 'base/room_form.html', context)
 
-
+@login_required(login_url = "login")
 def deleteRoom(request,pk):
     room = Room.objects.get(id = pk)
+
+        #login restriction is also require this action in case of someone knows the url eventhough not logged in
+    if request.user != room.host:
+        return HttpResponse ('You are not allowed here!!')
 
     if request.method == 'POST':
         room.delete()
