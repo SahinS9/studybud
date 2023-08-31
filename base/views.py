@@ -23,6 +23,10 @@ from .forms import RoomForm
 
 #have function login - it s method so itll create problem
 def LoginPage(request):
+
+    if request.user.is_authenticated:
+        return redirect ('home')
+
     if request.POST:
         username = request.POST.get('username')
         password = request.POST.get('password')
