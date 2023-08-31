@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse
-from .models import Room, Topic
+from .models import Room, Topic, Message
 
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -114,7 +114,27 @@ def home(request):
 
 def room (request,pk):
     room = Room.objects.get(id = pk)
-    context = {'room':room}
+
+    #we can query child objects of specific 
+    #message_set>
+    #  message is the model name we can write it lowercase and add set
+    # all> means get all related child rows
+    #order by is for latest messages "-"" means descending
+    room_messages = room.message_set.all().order_by('-created')
+
+    if request.method == 'POST':
+        message = Message.objects.create(
+            user = request.user,
+            room = room,
+            body = request.POST.get('body')
+        )
+
+        #even without this return function it will work and after post u ll see message BUT
+        # it can create some problems afterwards considering POST method will keep data - so need to fully refresh it
+        return redirect('room',pk = room.id)
+
+
+    context = {'room':room, 'room_messages':room_messages}
     return render(request, 'base/room.html', context)
 
 @login_required(login_url = "login")
