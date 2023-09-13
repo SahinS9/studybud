@@ -99,6 +99,7 @@ def home(request):
         Q(description__icontains = q)
                                 )
 
+
     # rooms = Room.objects.all()
     
     #need to change topics for most viewed or smth
@@ -107,8 +108,12 @@ def home(request):
     #this works faster than python len
     room_count = rooms.count()
 
+    #show activity in Recent Activity section
+    room_messages = Message.objects.filter(Q(room__topic__name__icontains=q)).order_by('-updated')
 
-    context = {'rooms':rooms, 'topics':topics, "room_count": room_count}
+
+
+    context = {'rooms':rooms, 'topics':topics, "room_count": room_count,'room_messages':room_messages}
     return render(request, 'base/home.html', context)
 
 
@@ -208,5 +213,7 @@ def deleteMessage(request,pk):
         return redirect('home')
 
     return render(request, 'base/delete.html', {'obj': message})
+
+
 
 

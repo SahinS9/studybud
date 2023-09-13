@@ -36,5 +36,9 @@ class Message(models.Model):
     def __str__(self):
         return self.body[0:50]
 
-    
+    #it helps to get data form this table always in descending ordered based on Meta
+    class Meta:
+        ordering = ['-updated','-created']
+        # 'updated': Ascending order  '-updated': Descending Order
+
 

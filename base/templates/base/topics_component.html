@@ -1,0 +1,10 @@
+
+    
+        {% for topic in topics %}
+
+        <div>
+            <!-- this home?topic_name view helps to filter data on the home page | that q variable we use in views.home -->
+            <a href = "{% url 'home' %}?q={{topic.name}}" >{{topic.name}}</a>
+        </div>
+
+    {% endfor %}
