@@ -13,7 +13,8 @@ class Room(models.Model):
     topic = models.ForeignKey(Topic, on_delete = models.SET_NULL, null = True) # when on delete is NULL so null = True should be written
     name = models.CharField(max_length=200) #null= False is default, not allowed Null
     description = models.TextField(null = True, blank = True, max_length = 3000) # allowed Null in column
-    # participants = 
+    #check this relation and research
+    participants = models.ManyToManyField(User, related_name='participants', blank = True)
     updated = models.DateTimeField(auto_now = True) #takes every save
     created = models.DateTimeField(auto_now_add = True) #takes when it s created
 
