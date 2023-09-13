@@ -195,3 +195,18 @@ def deleteRoom(request,pk):
     return render(request, 'base/delete.html', {'obj': room})
 
 
+@login_required(login_url = "login")
+def deleteMessage(request,pk):
+    message = Message.objects.get(id = pk)
+
+        #login restriction is also require this action in case of someone knows the url eventhough not logged in
+    if request.user != message.user:
+        return HttpResponse ('You are not allowed here!!')
+
+    if request.method == 'POST':
+        message.delete()
+        return redirect('home')
+
+    return render(request, 'base/delete.html', {'obj': message})
+
+
