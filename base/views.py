@@ -131,6 +131,10 @@ def room (request,pk):
             body = request.POST.get('body')
         )
 
+        #it adds user to the room if someone writes the message in the room
+        room.participants.add(request.user)
+
+
         #even without this return function it will work and after post u ll see message BUT
         # it can create some problems afterwards considering POST method will keep data - so need to fully refresh it
         return redirect('room',pk = room.id)
