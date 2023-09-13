@@ -123,6 +123,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# webpage pictures for design
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+#for user pictures
+# STATIC_ROOT =
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

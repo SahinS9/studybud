@@ -67,3 +67,8 @@ in browser
 inspect > application > Cookies
 
 We built session authentication by ourselves
+
+
+
+STATIC FILES
+need to add it to the settings so Django will know about it and we will be able to use it for the design
