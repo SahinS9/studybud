@@ -6,6 +6,9 @@ class RoomForm(ModelForm):
     class Meta:
         model = Room
         fields = '__all__'
+
+        #which selection shouldnot be in the form
+        exclude = ['host','participants']
         #['name','field']
         
 
