@@ -1,5 +1,8 @@
 from django.forms import ModelForm
 from .models import Room
+from django.contrib.auth.models import User
+
+
 
 class RoomForm(ModelForm):
     # meta data will come from Room Class and it will bring room names and etc in order to choose
@@ -12,4 +15,7 @@ class RoomForm(ModelForm):
         #['name','field']
         
 
-    
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['username','email']
