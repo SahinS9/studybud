@@ -1,0 +1,15 @@
+<!-- its usage will be for all delete operations that we gonna do (comment, user , post, room) -->
+
+{% extends 'main.html'%}
+
+{% block content%}
+
+<form method = "POST" action = "">
+    {% csrf_token %}
+    <p> Are you sure you want to delete "{{obj}}"?</p>
+    <a href = "{{request.META.HTTP_REFERER}}">Go Back</a>
+    <input type = "submit" value = "Confirm"/>
+</form>
+
+
+{% endblock content %}
