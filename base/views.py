@@ -282,5 +282,8 @@ def updateUser(request):
 
 
 
-
+# @login_required(login_url='login')
+def topicsPage(request):
+    context = {}
+    return render(request, 'base/topics.html' )
 
