@@ -71,4 +71,30 @@ We built session authentication by ourselves
 
 
 STATIC FILES
-need to add it to the settings so Django will know about it and we will be able to use it for the design
+need to add it to the settings so Django will know about it and we will be able to use it for the design\
+
+
+
+DJANGO REST FRAMEWORK
+
+easy wayto have json output from app
+
+we can do it with new django-admin startapp OR new folder in same app and
+
+and add this urls.py also to the general urls.py (studybud urls file)
+
+It has own 
+- __init__.py
+- URLs.py 
+- views.py
+- serializers.py 
+
+
+to Download rest FRAMEWORK
+
+in terminal: (env)
+"python3 -m pip install djangorestframework"
+
+need to serialize python object (directly comes from database)
+that is why when we do a = Model.objects.all() - We can not give it as Response(a)
+it need to be serialized - and It works class base
