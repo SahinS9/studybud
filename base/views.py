@@ -126,12 +126,12 @@ def topicsPage(request):
 
     return render (request,'base/topics.html',context = context)
 
-def activity(request):
-    activites = Message.objects.all()
+def activityPage(request):
+    activites = Message.objects.all()[0:4]
 
-    context = {'objects': activites}
+    context = {'room_messages': activites}
 
-    return render(request,'base/activiy_component.html', context= context )
+    return render(request,'base/activity.html', context= context )
 
 def room (request,pk):
     room = Room.objects.get(id = pk)
