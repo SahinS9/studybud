@@ -103,7 +103,7 @@ def home(request):
     # rooms = Room.objects.all()
     
     #need to change topics for most viewed or smth
-    topics= Topic.objects.all()
+    topics= Topic.objects.all()[0:5]
 
     #this works faster than python len
     room_count = rooms.count()
@@ -116,19 +116,22 @@ def home(request):
     context = {'rooms':rooms, 'topics':topics, "room_count": room_count,'room_messages':room_messages}
     return render(request, 'base/home.html', context)
 
-def topics(request):
-    topics = Topic.objects.all()
+def topicsPage(request):
+
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+
+    topics = Topic.objects.filter(name__icontains = q)
 
     context = {'topics':topics}
 
-    return render ('base/topics.html',context = context)
+    return render (request,'base/topics.html',context = context)
 
 def activity(request):
     activites = Message.objects.all()
 
     context = {'objects': activites}
 
-    return render('base/activiy_component.html', context= context )
+    return render(request,'base/activiy_component.html', context= context )
 
 def room (request,pk):
     room = Room.objects.get(id = pk)
@@ -282,8 +285,8 @@ def updateUser(request):
 
 
 
-# @login_required(login_url='login')
-def topicsPage(request):
-    context = {}
-    return render(request, 'base/topics.html' )
+
+# def topicsPage(request):
+#     context = {}
+#     return render(request, 'base/topics.html', context)
 
