@@ -19,9 +19,9 @@ from django.contrib.auth import authenticate, login, logout
 
 #for registration form
 from django.contrib.auth.forms import UserCreationForm
+#commented UserCreationForm - because we have custom User model
 
-
-from .forms import RoomForm, UserForm
+from .forms import RoomForm, UserForm, MyUserCreationForm
 
 # rooms = [
 #     {'id':1,'name':'Lets learn python!'},
@@ -38,23 +38,23 @@ def LoginPage(request):
         return redirect ('home')
 
     if request.POST:
-        username = request.POST.get('username').lower()
+        email = request.POST.get('email').lower()
         
         password = request.POST.get('password')
 
         try:
-            user = User.objects.get(username = username)
+            user = User.objects.get(email = email)
         except:
             messages.error(request, 'User does not exist')
 
-        user = authenticate(request, username = username, password= password)
+        user = authenticate(request, email = email, password= password)
 
         if user is not None:
             #adding session to db
             login(request, user)
             return redirect ('home')
         else:
-            messages.error(request,'Username or password does not exist')
+            messages.error(request,'Email or password does not exist')
     context = {'page':page}
     return render(request, 'base/login_register.html', context)
 
@@ -65,10 +65,10 @@ def logoutUser(request):
 
 def registerPage(request):
     page = 'register'
-    form = UserCreationForm()
+    form = MyUserCreationForm()
     
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = MyUserCreationForm(request.POST)
         if form.is_valid():
             #it will save user data but will not commit it to the db so we will lowercase username in order not to face with problem
             user = form.save(commit =False)

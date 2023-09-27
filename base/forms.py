@@ -6,6 +6,11 @@ from .models import Room
 from .models import User
 from django.contrib.auth.forms import UserCreationForm
 
+class MyUserCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['name','username','email','password1', 'password2']
+
 class RoomForm(ModelForm):
     # meta data will come from Room Class and it will bring room names and etc in order to choose
     class Meta:
