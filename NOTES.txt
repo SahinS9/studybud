@@ -137,3 +137,12 @@ CORS_ALLOWED_ORIGIN_REGEXES (domains starts with smth, has smth in it) = r"^/api
 CORS_ALLOW_ALL_ORIGINS (False or True - open to everyone)
 
 
+
+
+###### 
+TRY CUSTOM USER Model
+
+For this need to delete all data from database 
+and will do commits also to the another branch
+
+branch_name = custommodel
