@@ -171,5 +171,19 @@ AUTH_USER_MODEL = 'base.User'
 
 migrate after this!
 
+register user model to the admin
 
+admin.site.register(User)
 
+createsuperuser 
+
+edit model in models.py
+migrate again
+
+after editing name and bio for user 
+create new room and add some messages
+
+comment out avatar =  field in the User model
+it requires pillow package to work with pictures
+
+python -m pip install pillow
