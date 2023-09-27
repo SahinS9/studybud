@@ -133,7 +133,7 @@ def activityPage(request):
 
     return render(request,'base/activity.html', context= context )
 
-def room (request,pk):
+def room (request,pk): 
     room = Room.objects.get(id = pk)
 
     #we can query child objects of specific 
