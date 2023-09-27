@@ -1,6 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 # Create your models here.
+
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    pass
+
+
 
 class Topic(models.Model):
     name = models.CharField(max_length = 200)
@@ -40,5 +47,10 @@ class Message(models.Model):
     class Meta:
         ordering = ['-updated','-created']
         # 'updated': Ascending order  '-updated': Descending Order
+
+
+
+
+
 
 

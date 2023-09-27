@@ -146,3 +146,30 @@ For this need to delete all data from database
 and will do commits also to the another branch
 
 branch_name = custommodel
+
+
+TERMINAL
+
+git checkout -b custommodel
+
+git add .
+
+git commit -m "Your commit message here"
+git remote -v
+git remote add origin <repository_url>
+git push origin custommodel
+
+
+### AFTER this
+
+deleted db
+
+wrote new AbstractUser model as User
+
+added it the settings
+AUTH_USER_MODEL = 'base.User' 
+
+migrate after this!
+
+
+
