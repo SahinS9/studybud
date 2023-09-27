@@ -133,10 +133,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/images/'
+
+
 # webpage pictures for design
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
+
 ]
+
+MEDIA_ROOT = BASE_DIR / 'static/images'
+
+# prod env - need to upload directly to the aws s3:bucket
+
 
 #for user pictures
 # STATIC_ROOT =

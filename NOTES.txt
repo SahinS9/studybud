@@ -187,3 +187,16 @@ comment out avatar =  field in the User model
 it requires pillow package to work with pictures
 
 python -m pip install pillow
+
+
+USER PICTURE UPLOAD HANDLING
+
+go to the settings add "MEDIA_ROOT" and "MEDIA_URL"
+
+MEDIA_ROOT = should assigned to the some directory in applicaiton
+# prod env - need to upload pictures directly to the "AWS S3::bucket" (files should not be in server)
+
+and add urls.py
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+and now migrate model changes
