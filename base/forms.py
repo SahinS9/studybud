@@ -4,7 +4,7 @@ from .models import Room
 # from django.contrib.auth.models import User
 ## need to import User model from our own models
 from .models import User
-
+from django.contrib.auth.forms import UserCreationForm
 
 class RoomForm(ModelForm):
     # meta data will come from Room Class and it will bring room names and etc in order to choose
@@ -20,4 +20,4 @@ class RoomForm(ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['username','email']
+        fields = ['avatar','name','username','email','bio']

@@ -200,3 +200,14 @@ and add urls.py
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 and now migrate model changes
+
+
+after this go to the form - change form to the new User model configurations
+views.py - copy UserCreationForm and paste it to the forms.py
+
+and edit html to upload pictur (front-end)
+<form class="form" action="" method = 'POST' encytpe = "multipart/form-data">
+
+edit views.py (backend)
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES, instance = user)
